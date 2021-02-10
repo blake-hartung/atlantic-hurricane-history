@@ -1,0 +1,142 @@
+---
+title: "A Look Into Atlantic Hurricane History"
+author: "Blake Hartung"
+date: "2/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F)
+```
+
+``` {r results = F}
+# import dataset
+library(tidyverse)
+library(cowplot)
+
+hurricanes <- read_csv("atlantic_hurricane_data.csv")
+
+yearly_averages <- hurricanes %>% group_by(year) %>%
+  summarise(avg_wind = mean(sust_winds_mph, na.rm = T),
+            avg_pressure = mean(pressure_hpa, na.rm = T))
+```
+
+``` {r fig1, fig.height = 6, fig.width = 8, fig.align = "center", results = F}
+plot_1 <- ggplot(yearly_averages) +
+  aes(x = year,
+      y = avg_wind) +
+  geom_point(color = "red", alpha = 0.3) +
+  geom_smooth(method = "loess") +
+  # ylim(74, 160) +
+  scale_x_continuous(breaks = seq(1850, 2020, 10)) +
+  labs(x = "Year",
+       y = "Average Wind (mph)") +
+  ggtitle("Yearly Atlantic Hurricane Summary Stats (1850-2020)")
+  theme_minimal()
+
+plot_2 <- ggplot(yearly_averages) +
+  aes(x = year,
+      y = avg_pressure) +
+  geom_point(color = 'red', alpha = 0.3) +
+  geom_smooth(method = "loess") +
+  # ylim(882, 1013) +
+  scale_x_continuous(breaks = seq(1850, 2020, 10)) +
+  labs(x = "Year",
+       y = "Average Pressure (mBar/hPa)")
+  theme_minimal()
+
+plot_grid(plot_1, plot_2, ncol = 1, labels = "auto", label_fontface = "italic",
+          label_size = 8)
+```
+
+``` {r results = F}
+category_measures <- hurricanes %>% group_by(category) %>%
+  summarize(avg_wind = mean(sust_winds_mph, na.rm = T),
+            avg_pressure = mean(pressure_hpa, na.rm = T),
+            avg_year = mean(year, na.rm = T))
+
+ggplot(category_measures) +
+  aes(category, avg_year, fill = category) +
+  geom_col(show.legend = F)
+```
+
+``` {r results = F}
+library(ggbeeswarm)
+library(RColorBrewer)
+
+category_creation <- function(x) {
+  if (x == 1) {
+    return("1 (74-95 mph)")
+  } else if (x == 2) {
+    return("2 (96-110 mph)")
+  } else if (x == 3) {
+    return("3 (111-129 mph)")
+  } else if (x == 4) {
+    return("4 (130-156 mph)")
+  } else if (x == 5) {
+    return("5 (157+ mph)")
+  }
+}
+
+get_val <- Vectorize(category_creation)
+
+data_summary <- function(x) {
+   m <- mean(x)
+   ymin <- m-sd(x)
+   ymax <- m+sd(x)
+   return(c(y=m,ymin=ymin,ymax=ymax))
+}
+
+cleaned <- hurricanes %>% filter(year >= 1924) %>%
+  mutate(cat = get_val(category)) %>%
+  mutate(total = "                        Total")
+
+sum_data <- cleaned %>% count(category)        
+         
+top_plot <- ggplot(cleaned) +
+  aes(x = cat,
+      y = year,
+      fill = cat,
+      ) +
+  geom_violin(show.legend = F) +
+  scale_fill_brewer(palette = "Dark") +
+  stat_summary(fun.data=data_summary,
+               geom="pointrange", color="black",
+               show.legend = F) +
+  labs(x = "Category (with wind range)", y = "Year") +
+  coord_flip() +
+  scale_y_continuous(breaks = seq(1920, 2025, 10)) +
+  ggtitle("Yearly Hurricane Appearances by Saffir-Simpson Scale") +
+  theme_minimal()
+
+bot_plot <- ggplot(cleaned) +
+  aes(x = total,
+      y = year,
+      fill = total) +
+  geom_violin(show.legend = F) +
+  scale_fill_brewer(palette = "Dark2") +
+  stat_summary(fun.data=data_summary,
+               geom="pointrange", color="black",
+               show.legend = F) +
+  labs(x = NULL, y = "Dot: Median Value -- Whisker: Standard Deviation") +
+  coord_flip() +
+  scale_y_continuous(breaks = seq(1920, 2025, 10),
+                     labels = rep('', length(seq(1920, 2025, 10)))) +
+  theme_minimal()
+
+hist_plot <- ggplot(cleaned) +
+  aes(x = category, fill = cat) +
+  geom_histogram(show.legend = F) +
+  labs(x = "Category", y = "Occurences") +
+  theme_minimal() +
+  coord_flip() +
+  scale_fill_brewer(palette = "Dark2") +
+  ggtitle("Occurence Histogram")
+
+plot_grid(top_plot, bot_plot, hist_plot,  ncol = 1,
+          rel_widths = c(3, 3, 3), rel_heights = c(5, 3, 3))
+```
+
+

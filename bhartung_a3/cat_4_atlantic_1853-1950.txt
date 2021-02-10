@@ -1,0 +1,47 @@
+Hurricane #3	1853	August, September	130	240	150	924
+"1856 Last Island Hurricane"	1856	August	130	240	150	934
+Hurricane #6	1866	September, October	120	220	140	938
+Hurricane #7	1878	September, October	120	220	140	938
+Hurricane #2	1880	August	130	240	150	931
+Hurricane #8	1880	September, October	120	220	140	928
+Hurricane #6	1882	October	120	220	140	975
+Indianola Hurricane of 1886	1886	August	130	240	150	925
+Hurricane #10	1893	September, October	115	215	130	948
+Hurricane #6	1894	October	115	215	130	931
+1898 Georgia hurricane	1898	September, October	115	215	130	930
+1899 San Ciriaco hurricane	1899	August, September	130	240	150	930
+Hurricane #4	1906	August, September	115	215	130	950
+1910 Cuba hurricane	1910	October	130	240	150	924
+1915 Galveston hurricane	1915	August	125	230	145	940
+1915 New Orleans hurricane	1915	September, October	125	230	145	931
+1916 Texas hurricane	1916	August	115	215	130	932
+1917 Nueva Gerona hurricane	1917	September	130	240	150	928
+1919 Florida Keys hurricane	1919	September	130	240	150	927
+1921 Tampa Bay hurricane	1921	October	120	220	140	941
+1926 Nassau hurricane	1926	July, August	120	220	140	≤ 967
+Hurricane #4	1926	September	120	220	140	≤ 957
+1926 Miami hurricane	1926	September	130	240	150	930
+1926 Havana–Bermuda hurricane	1926	October	130	240	150	934
+1929 Bahamas hurricane	1929	September, October	135	250	155	924
+1930 Dominican Republic hurricane	1930	August, September	135	250	155	933
+1931 Belize hurricane	1931	September	115	215	130	≤ 952
+1932 Freeport hurricane	1932	August	130	240	150	935
+1932 San Ciprian hurricane	1932	September	125	230	145	943
+1933 Chesapeake–Potomac hurricane	1933	August	120	220	140	≤ 940
+1933 Treasure Coast hurricane	1933	August, September	120	220	140	945
+1933 Outer Banks hurricane	1933	September	120	220	140	≤ 947
+Hurricane #2	1935	August	115	215	130	≤ 955
+1935 Cuba hurricane	1935	September, October	120	220	140	≤ 945
+Hurricane #5	1939	October	120	220	140	≤ 941
+Hurricane #4	1941	September	115	215	130	≤ 957
+Hurricane #3	1943	August	120	220	140	950
+1944 Great Atlantic hurricane	1944	September	125	230	145	≤ 933
+1944 Cuba–Florida hurricane	1944	October	125	230	145	937
+1945 Homestead hurricane	1945	September	115	215	130	949
+1947 Fort Lauderdale hurricane	1947	September	125	230	145	938
+1948 Bermuda–Newfoundland hurricane	1948	September	115	215	130	940
+September 1948 Florida hurricane	1948	September	115	215	130	940
+1949 Florida hurricane	1949	August	115	215	130	954
+Hurricane Dog	1950	September	125	230	145	943
+Hurricane Fox	1950	September	120	220	140	946
+Hurricane King	1950	October	115	215	130	955
